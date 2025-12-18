@@ -36,11 +36,12 @@ pipeline{
                 }
             }
         }
-		stage('Quality-Gate'){
-		 steps{
-		  waitForQualityGate abortPipeline: true
-		 }
-		}
+	 stage('OWASP Dependency-Check') {
+      steps {
+         dependencyCheck additionalArguments: '--scan pom.xml', odcInstallation: 'Dependency-Check'
+             dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+       }	
      
    
    }
