@@ -4,7 +4,7 @@ pipeline{
   environment {
         SCANNER_HOME=tool 'SonarScanner'
 		ACR_LOGIN_SERVER = "devopsproject1.azurecr.io"
-		IMAGE_NAME = "petclininc"
+		IMAGE_NAME = "petclinic"
 		TAG = "latest"
     }
 	
