@@ -3,7 +3,7 @@ pipeline{
  
   environment {
         SCANNER_HOME=tool 'SonarScanner'
-		ACR_LOGIN_SERVER = "devopsproject1.azurecr.io"
+		ACR_LOGIN_SERVER = "devopsproject2.azurecr.io"
 		IMAGE_NAME = "petclinic"
 		TAG = "latest"
     }
@@ -22,32 +22,6 @@ pipeline{
      stage('Test'){
 	 steps{
 	  sh 'mvn test'
-	  }
-	 }
-	 stage('SonarQube Analysis'){
-	 steps{
-	  sh 'mvn test'
-	  }
-	 }
-	 stage("Sonarqube Analysis "){
-            steps{
-                withSonarQubeEnv('SonarQube') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Petclinic \
-                    -Dsonar.java.binaries=. \
-                    -Dsonar.projectKey=Petclinic '''
-    
-                }
-            }
-        }
-	 stage('OWASP Dependency-Check') {
-      steps {
-         dependencyCheck additionalArguments: '--scan pom.xml', odcInstallation: 'Dependency-Check'
-             dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-       }	
-     stage('Build doecker Image'){
-	  steps{
-	   sh 'docker build -t petclinic:latest .'
 	  }
 	 }
 	 stage('Login to ACR') {
