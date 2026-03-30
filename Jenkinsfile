@@ -45,6 +45,13 @@ pipeline{
          '''
           }
         }
+      stage('Push Image') {
+        steps {
+         sh '''
+           docker push $ACR_LOGIN_SERVER/${IMAGE_NAME}:${TAG}
+         '''
+          }
+        }
    
    }
 }
