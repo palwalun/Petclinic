@@ -2,7 +2,6 @@ pipeline{
  agent any
  
   environment {
-        SCANNER_HOME=tool 'SonarScanner'
 		ACR_LOGIN_SERVER = "devopsproject2.azurecr.io"
 		IMAGE_NAME = "petclinic"
 		TAG = "latest"
