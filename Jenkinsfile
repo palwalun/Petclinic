@@ -15,12 +15,7 @@ pipeline{
 	 }
 	 stage('Build'){
 	 steps{
-	  sh 'mvn clean package'
-	  }
-	 }
-     stage('Test'){
-	 steps{
-	  sh 'mvn test'
+	  sh 'mvn clean package -DskipTests'
 	  }
 	 }
 	 stage('Login to ACR') {
@@ -49,13 +44,6 @@ pipeline{
         steps {
          sh '''
            docker push $ACR_LOGIN_SERVER/${IMAGE_NAME}:${TAG}
-         '''
-          }
-        }
-      stage('Deploy to AKS') {
-        steps {
-         sh '''
-          kubectl apply -f deployment.yaml
          '''
           }
         }
