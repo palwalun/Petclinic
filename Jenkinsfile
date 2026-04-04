@@ -25,7 +25,6 @@ pipeline{
       '''
        }
      }
-   }
 	 stage('Login to ACR') {
        steps {
          withCredentials([usernamePassword(
